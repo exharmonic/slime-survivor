@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=3 uid="uid://xnoy203yjfj3"]
+
+[ext_resource type="Texture2D" uid="uid://613lui5r7bxv" path="res://addons/orbs.png" id="1_ogqpy"]
+[ext_resource type="Script" uid="uid://ckkh1nclyxtlw" path="res://orb.gd" id="1_xdlj8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdlj8"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qvkr"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx8ir"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73urv"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(64, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3niym"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(80, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg7xi"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(96, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdbt5"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(128, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbj6m"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_retvd"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(160, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qywt"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5ild"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xexy"]
+atlas = ExtResource("1_ogqpy")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2cfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdlj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qvkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx8ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73urv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3niym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg7xi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdbt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbj6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_retvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qywt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5ild")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xexy")
+}],
+"loop": true,
+"name": &"Orb",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogqpy"]
+size = Vector2(18, 18)
+
+[node name="Orb" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_xdlj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j2cfm")
+animation = &"Orb"
+frame_progress = 0.94305474
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ogqpy")

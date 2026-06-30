@@ -1,0 +1,480 @@
+[gd_scene load_steps=26 format=3 uid="uid://b3u84076due2"]
+
+[ext_resource type="PackedScene" uid="uid://c1sx7bic4uhdj" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dususlr2yr63q" path="res://game.gd" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c0gpy0pye4jr6" path="res://tree.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://cl6l2g6f7qxle" path="res://addons/leftmousebutton_118397.png" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://bbqs0q1kvqgvj" path="res://addons/circle-removebg-preview.png" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://d1ofq7mk505i8" path="res://addons/Boomerang.png" id="8_vef74"]
+[ext_resource type="Texture2D" uid="uid://cwtg2bwia47f5" path="res://addons/19023983-431a-4013-9333-22ee8ff92c48-removebg-preview.png" id="9_hve3p"]
+[ext_resource type="Texture2D" uid="uid://d4jne3r3eprof" path="res://addons/image (1).png" id="10_mfdv2"]
+[ext_resource type="FontFile" uid="uid://dtjq0cwosfyxn" path="res://addons/Retro Pixel.otf" id="11_mfdv2"]
+
+[sub_resource type="Animation" id="Animation_j5wjh"]
+resource_name = "Day Night Cycle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.7, 0.2, 0.7]
+}
+
+[sub_resource type="Animation" id="Animation_vef74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hve3p"]
+_data = {
+&"Day Night Cycle": SubResource("Animation_j5wjh"),
+&"RESET": SubResource("Animation_vef74")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eow3j"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5wjh"]
+bg_color = Color(0, 0, 0, 0.7372549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vef74"]
+bg_color = Color(0, 0, 0, 0.7372549)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hve3p"]
+
+[sub_resource type="Animation" id="Animation_eow3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ryrav"]
+resource_name = "disappear"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5wjh"]
+_data = {
+&"RESET": SubResource("Animation_eow3j"),
+&"disappear": SubResource("Animation_ryrav")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_feb5d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 159, 1505, 0, 0, 0, 0, -33, 1394, 0, 0, 0, 0, -137, 1194, 0, 0, 0, 0, -285, 950, 0, 0, 0, 0, -322, 698, 0, 0, 0, 0, -351, 424, 0, 0, 0, 0, -336, 232, 0, 0, 0, 0, -233, 47, 0, 0, 0, 0, -85, -212, 0, 0, 0, 0, 48, -375, 0, 0, 0, 0, 226, -523, 0, 0, 0, 0, 485, -619, 0, 0, 0, 0, 825, -686, 0, 0, 0, 0, 1084, -686, 0, 0, 0, 0, 1410, -619, 0, 0, 0, 0, 1684, -560, 0, 0, 0, 0, 1928, -345, 0, 0, 0, 0, 2106, -64, 0, 0, 0, 0, 2194, 239, 0, 0, 0, 0, 2246, 558, 0, 0, 0, 0, 2320, 743, 0, 0, 0, 0, 2283, 994, 0, 0, 0, 0, 2231, 1275, 0, 0, 0, 0, 2098, 1438, 0, 0, 0, 0, 1891, 1542, 0, 0, 0, 0, 1639, 1653, 0, 0, 0, 0, 1321, 1682, 0, 0, 0, 0, 1181, 1712, 0, 0, 0, 0, 825, 1727, 0, 0, 0, 0, 618, 1749, 0, 0, 0, 0, 404, 1675, 0, 0, 0, 0, 256, 1586, 0, 0, 0, 0, 159, 1505)
+}
+point_count = 33
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hve3p"]
+bg_color = Color(0.35639998, 0.66, 0.61952007, 0.78039217)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 10
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfdv2"]
+bg_color = Color(0.36862746, 0.8980392, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 10
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hve3p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5wjh"]
+radius = 264.51843
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hve3p"]
+radius = 250.0
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_fc0e3")
+
+[node name="Canva" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Canva"]
+offset_left = -30.0
+offset_top = -50.0
+offset_right = 2062.0
+offset_bottom = 1184.0
+color = Color(0, 0.7, 0.175, 1)
+
+[node name="ColorRectAP" type="AnimationPlayer" parent="Canva/ColorRect"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_hve3p")
+}
+speed_scale = 0.05
+
+[node name="Instructions" type="Label" parent="Canva"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -957.0
+offset_top = -109.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 80
+text = "Use      to move and    shoot/boomerang"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Canva/Instructions"]
+position = Vector2(976.33, 43)
+scale = Vector2(0.2578122, 0.22070289)
+texture = ExtResource("3_ryrav")
+
+[node name="Button" type="Button" parent="Canva/Instructions"]
+layout_mode = 0
+offset_left = 277.0
+offset_top = -2.0
+offset_right = 322.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_eow3j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j5wjh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vef74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hve3p")
+text = "w"
+
+[node name="Button2" type="Button" parent="Canva/Instructions"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 46.0
+offset_right = 274.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_eow3j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j5wjh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vef74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hve3p")
+text = "a"
+
+[node name="Button3" type="Button" parent="Canva/Instructions"]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 46.0
+offset_right = 322.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_eow3j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j5wjh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vef74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hve3p")
+text = "s"
+
+[node name="Button4" type="Button" parent="Canva/Instructions"]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 46.0
+offset_right = 370.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_eow3j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j5wjh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vef74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hve3p")
+text = "d"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canva/Instructions"]
+libraries = {
+&"": SubResource("AnimationLibrary_j5wjh")
+}
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(963, 540)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-807, -531)
+curve = SubResource("Curve2D_feb5d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(159, 1505)
+rotation = -2.617413
+
+[node name="tree" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(169, 752)
+
+[node name="tree3" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(778, 165)
+
+[node name="tree8" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(539, 552)
+
+[node name="tree9" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(1687, 588)
+
+[node name="tree4" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(1168, 608)
+
+[node name="tree5" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(241, 215)
+
+[node name="tree6" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(701, 904)
+
+[node name="tree7" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(1599, 208)
+
+[node name="tree2" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(1522, 867)
+
+[node name="Timer1" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Game_Over" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Game_Over"]
+modulate = Color(0, 0, 0, 0.33333334)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50534403, 0.5053441, 0.50534403, 1)
+
+[node name="Label" type="Label" parent="Game_Over/ColorRect"]
+unique_name_in_owner = true
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -423.5
+offset_top = -90.0
+offset_right = 423.5
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
+
+[node name="Slimes count" type="CanvasLayer" parent="."]
+
+[node name="slimes_count" type="Label" parent="Slimes count"]
+top_level = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -721.0
+offset_top = 15.0
+offset_right = -40.0
+offset_bottom = 112.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 80
+text = "Slimes killed: 0"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelBar" type="ProgressBar" parent="GUI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 209.0
+offset_top = 97.0
+offset_right = 1073.0
+offset_bottom = 162.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hve3p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mfdv2")
+max_value = 0.0
+step = 0.0
+show_percentage = false
+
+[node name="Circle" type="Sprite2D" parent="GUI/Control/LevelBar"]
+position = Vector2(-70, 30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_j5wjh")
+
+[node name="Level" type="Label" parent="GUI/Control/LevelBar/Circle"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -358.0
+offset_right = -141.99998
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoomRect" type="ColorRect" parent="GUI/Control"]
+unique_name_in_owner = true
+self_modulate = Color(0.471, 0.471, 0.471, 0.675)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0020833334
+anchor_top = -0.009259252
+anchor_right = 0.071875
+anchor_bottom = 0.11481482
+offset_left = 1721.0
+offset_top = 91.99999
+offset_right = 1727.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/BoomRect"]
+self_modulate = Color(0.471, 0.471, 0.471, 0.675)
+position = Vector2(70, 70)
+scale = Vector2(0.0729167, 0.07291671)
+texture = ExtResource("8_vef74")
+
+[node name="Compass" type="Sprite2D" parent="GUI"]
+position = Vector2(1596, 155.99998)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("9_hve3p")
+
+[node name="CompassNeedle" type="Sprite2D" parent="GUI/Compass"]
+unique_name_in_owner = true
+position = Vector2(0.00015830994, 5.710125e-05)
+rotation = 2.7209682
+scale = Vector2(0.556, 0.556)
+texture = ExtResource("10_mfdv2")
+centered = false
+offset = Vector2(-29.065, -149.1)
+
+[node name="BossDist" type="Label" parent="GUI/Compass"]
+unique_name_in_owner = true
+top_level = true
+offset_left = 1524.0
+offset_top = 232.0
+offset_right = 1570.0
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("11_mfdv2")
+text = "Dist: "
+
+[node name="Boss_fight_area" type="Area2D" parent="."]
+position = Vector2(6986, -2271)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss_fight_area"]
+material = SubResource("CanvasItemMaterial_hve3p")
+shape = SubResource("CircleShape2D_j5wjh")
+
+[node name="BossFightLocation" type="Marker2D" parent="Boss_fight_area"]
+unique_name_in_owner = true
+
+[node name="ArenaLabel" type="Label" parent="Boss_fight_area"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -21.0
+offset_right = 253.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_mfdv2")
+theme_override_font_sizes/font_size = 30
+text = "Step in to fight the Slime Boss\\nLevel 5 required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CircleRemovebgPreview" type="Sprite2D" parent="Boss_fight_area"]
+position = Vector2(-0.9999592, 2.000051)
+scale = Vector2(1.8120002, 1.8100001)
+texture = ExtResource("8_j5wjh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boss_fight_area"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss_fight_area/StaticBody2D"]
+shape = SubResource("CircleShape2D_hve3p")
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer1" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_tree_timer_timeout"]
+[connection signal="body_entered" from="Boss_fight_area" to="." method="_on_boss_fight_area_body_entered"]

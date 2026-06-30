@@ -1,0 +1,190 @@
+[gd_scene load_steps=16 format=3 uid="uid://3j3tbde72dt0"]
+
+[ext_resource type="Shader" uid="uid://cqj1wpo1ir0ty" path="res://start_ui.gdshader" id="1_305eq"]
+[ext_resource type="Script" uid="uid://hniffhijt0rl" path="res://start_ui.gd" id="1_nia15"]
+[ext_resource type="Texture2D" uid="uid://cfpvfjmcum3ni" path="res://addons/BG.png" id="2_3sk5c"]
+[ext_resource type="FontFile" uid="uid://dtjq0cwosfyxn" path="res://addons/Retro Pixel.otf" id="2_xbqdw"]
+
+[sub_resource type="Animation" id="Animation_xbqdw"]
+resource_name = "(un)zoom"
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nia15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2eaa6"]
+_data = {
+&"(un)zoom": SubResource("Animation_xbqdw"),
+&"RESET": SubResource("Animation_nia15")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_305eq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nia15"]
+texture = ExtResource("2_3sk5c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_305eq"]
+shader = ExtResource("1_305eq")
+shader_parameter/blur_size = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toj8c"]
+bg_color = Color(6.3532593e-06, 0.81282276, 0.5385744, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_puhy4"]
+bg_color = Color(0, 0.8117647, 0.5372549, 0.39215687)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_305eq"]
+bg_color = Color(0, 0.8117647, 0.5372549, 0.39215687)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xbqdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nia15"]
+
+[node name="Start_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nia15")
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.277
+anchor_right = 0.5
+anchor_bottom = 0.277
+offset_left = -757.0
+offset_top = -90.16
+offset_right = 757.0
+offset_bottom = 89.84
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(757, 90)
+theme_override_colors/font_color = Color(0.3882353, 0.8, 0.37254903, 1)
+theme_override_colors/font_shadow_color = Color(0.82515955, 0, 0.36516425, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_xbqdw")
+theme_override_font_sizes/font_size = 150
+text = "Slime Survivor!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_2eaa6")
+}
+playback_auto_capture_transition_type = 6
+playback_default_blend_time = 0.2
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("CanvasItemMaterial_305eq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nia15")
+
+[node name="BlurPlanel" type="Panel" parent="Panel"]
+material = SubResource("ShaderMaterial_305eq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 593.0
+offset_right = 1239.0
+offset_bottom = 664.19
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_fonts/font = ExtResource("2_xbqdw")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_toj8c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_puhy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_305eq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xbqdw")
+text = "Start"
+autowrap_trim_flags = 0
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 694.0
+offset_right = 1239.0
+offset_bottom = 765.19
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_fonts/font = ExtResource("2_xbqdw")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_toj8c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_puhy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_305eq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nia15")
+text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.0
+offset_top = 53.0
+offset_right = 279.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

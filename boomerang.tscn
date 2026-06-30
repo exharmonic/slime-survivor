@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvep33jap4035"]
+
+[ext_resource type="Script" uid="uid://2anpwm2eok0r" path="res://boomerang.gd" id="1_420uo"]
+[ext_resource type="Texture2D" uid="uid://d1ofq7mk505i8" path="res://addons/Boomerang.png" id="1_apt2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oornc"]
+size = Vector2(60, 64.5)
+
+[node name="Boomerang" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_420uo")
+
+[node name="boomerang_sprite" type="Sprite2D" parent="."]
+position = Vector2(74, -0.9999996)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_apt2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(74.000015, -0.25)
+shape = SubResource("RectangleShape2D_oornc")

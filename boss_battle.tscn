@@ -1,0 +1,391 @@
+[gd_scene load_steps=18 format=3 uid="uid://6du6hge8m8so"]
+
+[ext_resource type="Script" uid="uid://cyhvt73fomusc" path="res://boss_battle.gd" id="1_kqwn0"]
+[ext_resource type="FontFile" uid="uid://dtjq0cwosfyxn" path="res://addons/Retro Pixel.otf" id="2_3mtlf"]
+[ext_resource type="PackedScene" uid="uid://c1sx7bic4uhdj" path="res://player.tscn" id="3_a7vhv"]
+[ext_resource type="Texture2D" uid="uid://bbqs0q1kvqgvj" path="res://addons/circle-removebg-preview.png" id="4_o3bn7"]
+[ext_resource type="Texture2D" uid="uid://d1ofq7mk505i8" path="res://addons/Boomerang.png" id="5_3mtlf"]
+[ext_resource type="Texture2D" uid="uid://dl8camnhyt7h5" path="res://addons/ChatGPT Image Dec 20, 2025, 08_05_08 PM.png" id="6_3mtlf"]
+
+[sub_resource type="Animation" id="Animation_j5wjh"]
+resource_name = "Day Night Cycle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.7, 0.2, 0.7]
+}
+
+[sub_resource type="Animation" id="Animation_vef74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hve3p"]
+_data = {
+&"Day Night Cycle": SubResource("Animation_j5wjh"),
+&"RESET": SubResource("Animation_vef74")
+}
+
+[sub_resource type="Animation" id="Animation_eow3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Your job is to kill this guy"]
+}
+
+[sub_resource type="Animation" id="Animation_ryrav"]
+resource_name = "disappear"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2.5, 3.7, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Oh, also, don't touch him.
+"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5wjh"]
+_data = {
+&"RESET": SubResource("Animation_eow3j"),
+&"disappear": SubResource("Animation_ryrav")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk7ly"]
+bg_color = Color(0.35639998, 0.66, 0.61952007, 0.78039217)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 10
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqlls"]
+bg_color = Color(0.36862746, 0.8980392, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmcg4"]
+bg_color = Color(0.06666667, 0.627451, 0.24705882, 0.45490196)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.8, 0.8, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.007146069, 0.22564664, 0.96754414, 0.6)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kccgx"]
+bg_color = Color(1, 0.3137255, 0.24705882, 0.8666667)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3bn7"]
+size = Vector2(2113, 53)
+
+[node name="Boss_Battle" type="Node2D"]
+script = ExtResource("1_kqwn0")
+
+[node name="Canva" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Canva"]
+offset_left = -30.0
+offset_top = -50.0
+offset_right = 2062.0
+offset_bottom = 1184.0
+color = Color(0, 0.7, 0.175, 1)
+
+[node name="ColorRectAP" type="AnimationPlayer" parent="Canva/ColorRect"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_hve3p")
+}
+speed_scale = 0.05
+
+[node name="Instructions" type="Label" parent="Canva"]
+top_level = true
+z_index = 11
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -739.0
+offset_top = -112.0
+offset_right = 739.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("2_3mtlf")
+theme_override_font_sizes/font_size = 90
+text = "Your job is to kill this guy"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canva/Instructions"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_j5wjh")
+}
+
+[node name="Player" parent="." instance=ExtResource("3_a7vhv")]
+position = Vector2(519, 320)
+
+[node name="Timer1" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelBar" type="ProgressBar" parent="GUI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 209.0
+offset_top = 97.0
+offset_right = 1073.0
+offset_bottom = 162.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tk7ly")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sqlls")
+max_value = 0.0
+step = 0.0
+show_percentage = false
+
+[node name="Circle" type="Sprite2D" parent="GUI/Control/LevelBar"]
+position = Vector2(-70, 30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_o3bn7")
+
+[node name="Level" type="Label" parent="GUI/Control/LevelBar/Circle"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -358.0
+offset_right = -141.99998
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_3mtlf")
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoomRect" type="ColorRect" parent="GUI/Control"]
+unique_name_in_owner = true
+self_modulate = Color(0.471, 0.471, 0.471, 0.675)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0020833334
+anchor_top = -0.009259252
+anchor_right = 0.071875
+anchor_bottom = 0.11481482
+offset_left = 1721.0
+offset_top = 91.99999
+offset_right = 1727.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/BoomRect"]
+self_modulate = Color(0.471, 0.471, 0.471, 0.675)
+position = Vector2(70, 70)
+scale = Vector2(0.0729167, 0.07291671)
+texture = ExtResource("5_3mtlf")
+
+[node name="BossHealth" type="ProgressBar" parent="GUI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -671.48145
+offset_top = 30.0
+offset_right = 671.48145
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 1, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lmcg4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kccgx")
+max_value = 75.0
+value = 26.74
+show_percentage = false
+
+[node name="Border" type="StaticBody2D" parent="."]
+show_behind_parent = true
+position = Vector2(65, -23)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(956, -3)
+shape = SubResource("RectangleShape2D_o3bn7")
+
+[node name="ColorRect" type="ColorRect" parent="Border/CollisionShape2D"]
+visible = false
+offset_left = -1075.0
+offset_top = -25.0
+offset_right = 956.0
+offset_bottom = 26.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(943, 1149)
+shape = SubResource("RectangleShape2D_o3bn7")
+
+[node name="ColorRect2" type="ColorRect" parent="Border/CollisionShape2D2"]
+visible = false
+offset_left = -1064.0
+offset_top = -27.0
+offset_right = 936.0
+offset_bottom = 26.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(1883, 93)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_o3bn7")
+
+[node name="ColorRect3" type="ColorRect" parent="Border/CollisionShape2D3"]
+visible = false
+offset_left = -120.897766
+offset_top = -28.500015
+offset_right = 1056.3049
+offset_bottom = 26.663315
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(-94, 458)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_o3bn7")
+
+[node name="ColorRect4" type="ColorRect" parent="Border/CollisionShape2D4"]
+visible = false
+offset_left = -436.0
+offset_top = -29.99998
+offset_right = 699.33264
+offset_bottom = 25.16335
+
+[node name="ChatGptImageDec20,2025,080508Pm" type="Sprite2D" parent="Border"]
+show_behind_parent = true
+position = Vector2(899, 578)
+scale = Vector2(1.6927081, 1.609375)
+texture = ExtResource("6_3mtlf")
+
+[node name="Game_Over" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Game_Over"]
+modulate = Color(0, 0, 0, 0.33333334)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50534403, 0.5053441, 0.50534403, 1)
+
+[node name="Label" type="Label" parent="Game_Over/ColorRect"]
+unique_name_in_owner = true
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -423.5
+offset_top = -90.0
+offset_right = 423.5
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_3mtlf")
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
